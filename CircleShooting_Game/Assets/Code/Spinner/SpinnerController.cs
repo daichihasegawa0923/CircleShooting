@@ -9,24 +9,19 @@ namespace DiamondGames.CicleShooting.Spinner
         [SerializeField]
         protected GameObject _spinObject;
 
+        [SerializeField]
+        protected float _spinSpeed = 1.0f;
+        protected float _currentSpinSpeed = 0.0f;
         protected Vector3 _firstTouchScreenPosition = Vector3.zero;
         protected bool _isTouching = false;
 
         protected Vector3 _currentSpinObjectSpin;
-        protected float _touchingSpin;
 
-        [SerializeField] CanvasForDebug _canvasForDebug;
+        [SerializeField]
+        CanvasForDebug _canvasForDebug;
 
-        protected Vector3 _centerOfScreenPosition;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            // スクリーンの中央座標の取得
-            this._centerOfScreenPosition = Vector3.zero;
-            this._centerOfScreenPosition.x = Screen.width / 2;
-            this._centerOfScreenPosition.y = Screen.height / 2;
-        }
+        [SerializeField]
+        HummerAnimatorController _hummerAnimatorController;
 
         // Update is called once per frame
         protected virtual void Update()
@@ -44,26 +39,26 @@ namespace DiamondGames.CicleShooting.Spinner
                 _firstTouchScreenPosition = Input.mousePosition;
                 _currentSpinObjectSpin = _spinObject.transform.eulerAngles;
                 _isTouching = true;
-
-                _touchingSpin = this.CalcAngle(this._centerOfScreenPosition, Input.mousePosition);
             }
 
             if (Input.GetMouseButtonUp(0))
             {
                 _isTouching = false;
+                _currentSpinSpeed = 0.0f;
+                _hummerAnimatorController.StopWand();
             }
 
             // タップ中の処理
             if (!_isTouching)
                 return;
 
-            var angle = this.CalcAngle(this._centerOfScreenPosition, Input.mousePosition);
-            var reangle = angle - _touchingSpin;
-            _canvasForDebug.SetAngleText(angle.ToString() + ":" + this._touchingSpin);
+            var spin = Input.mousePosition.x > _firstTouchScreenPosition.x ? 1 : -1;
+            this._hummerAnimatorController.Wand(spin > 0);
 
+            _currentSpinSpeed += _currentSpinSpeed < _spinSpeed ? 0.02f : 0.0f;
             //角度をオブジェクトに反映する
             var spins = _spinObject.transform.eulerAngles;
-            spins.y = _currentSpinObjectSpin.y + reangle;
+            spins.y += spin * _currentSpinSpeed;
             _spinObject.transform.eulerAngles = spins;
         }
 

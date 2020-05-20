@@ -8,6 +8,9 @@ public class TrapBase : MonoBehaviour
     [SerializeField] protected float _speed = 1.0f;
     protected ControlledCharacter _aim;
     protected Rigidbody _rigidbody;
+    [SerializeField]
+    protected int _damage = 10;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -29,5 +32,22 @@ public class TrapBase : MonoBehaviour
         forward.y = (_aim.transform.position.y - this.transform.position.y) / Mathf.Abs(_aim.transform.position.y - this.transform.position.y);
 
         _rigidbody.velocity = forward * _speed;
+    }
+    
+    public virtual void Burst(Vector3 speed)
+    {
+        this._rigidbody.velocity = speed;
+        Destroy(this);
+    }
+
+    protected virtual void OnCollisionEnter(Collision collision)
+    {
+        var character = collision.gameObject.GetComponent<ControlledCharacter>();
+
+        if (character)
+        {
+            character.Damaged(this._damage);
+            Destroy(gameObject);
+        }
     }
 }
