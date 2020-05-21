@@ -5,6 +5,7 @@ using UnityEngine;
 public class HummerHead : MonoBehaviour
 {
     [SerializeField] float _burstSpeed = 10.0f;
+    [SerializeField] AudioSource _audioSouce;
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
@@ -16,6 +17,7 @@ public class HummerHead : MonoBehaviour
             speedBase *= _burstSpeed;
             speedBase.y += 10.0f;
             trap.Burst(speedBase);
+            this._audioSouce.Play();
         }
     }
 }

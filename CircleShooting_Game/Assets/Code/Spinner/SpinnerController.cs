@@ -11,7 +11,6 @@ namespace DiamondGames.CicleShooting.Spinner
 
         [SerializeField]
         protected float _spinSpeed = 1.0f;
-        protected float _currentSpinSpeed = 0.0f;
         protected Vector3 _firstTouchScreenPosition = Vector3.zero;
         protected bool _isTouching = false;
 
@@ -44,7 +43,6 @@ namespace DiamondGames.CicleShooting.Spinner
             if (Input.GetMouseButtonUp(0))
             {
                 _isTouching = false;
-                _currentSpinSpeed = 0.0f;
                 _hummerAnimatorController.StopWand();
             }
 
@@ -53,12 +51,17 @@ namespace DiamondGames.CicleShooting.Spinner
                 return;
 
             var spin = Input.mousePosition.x > _firstTouchScreenPosition.x ? 1 : -1;
-            this._hummerAnimatorController.Wand(spin > 0);
+            var spinSpeed = Mathf.Abs(Input.mousePosition.x - _firstTouchScreenPosition.x) / Screen.width;
 
-            _currentSpinSpeed += _currentSpinSpeed < _spinSpeed ? 0.02f : 0.0f;
+            // スクリーンの5%未満である時、処理を中断する
+            if (Mathf.Abs(Input.mousePosition.x - _firstTouchScreenPosition.x) < Screen.width * 0.05f)
+                return;
+
+            this._hummerAnimatorController.Wand(spin > 0);
+            
             //角度をオブジェクトに反映する
             var spins = _spinObject.transform.eulerAngles;
-            spins.y += spin * _currentSpinSpeed;
+            spins.y += spin * _spinSpeed * spinSpeed;
             _spinObject.transform.eulerAngles = spins;
         }
 

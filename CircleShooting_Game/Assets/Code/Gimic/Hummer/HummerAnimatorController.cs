@@ -12,11 +12,14 @@ public class HummerAnimatorController : MonoBehaviour
     public void Wand(bool isRight)
     {
         var animationName = isRight ? this._rightWand : this._leftWand;
-        this._animator.SetTrigger(animationName);
+        var noAnimationName = isRight ? this._leftWand : this._rightWand;
+        this._animator.SetBool(animationName,true);
+        this._animator.SetBool(noAnimationName, false);
     }
 
     public void StopWand()
     {
-        this._animator.SetTrigger(this._noWand);
+        this._animator.SetBool(this._rightWand,false);
+        this._animator.SetBool(this._leftWand, false);
     }
 }
