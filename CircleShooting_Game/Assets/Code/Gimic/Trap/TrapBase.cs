@@ -5,11 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class TrapBase : MonoBehaviour
 {
-    [SerializeField] protected float _speed = 1.0f;
+    [SerializeField] private float _speed = 1.0f;
     protected ControlledCharacter _aim;
     protected Rigidbody _rigidbody;
     [SerializeField]
-    protected int _damage = 10;
+    private int _damage = 10;
+
+    public float Speed { get => _speed; set => _speed = value; }
+    public int Damage { get => _damage; set => _damage = value; }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -38,6 +41,7 @@ public class TrapBase : MonoBehaviour
     {
         this._rigidbody.velocity = speed;
         Destroy(this);
+        Destroy(gameObject, 2.0f);
     }
 
     protected virtual void OnCollisionEnter(Collision collision)

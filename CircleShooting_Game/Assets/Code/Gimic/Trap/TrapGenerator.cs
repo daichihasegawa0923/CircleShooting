@@ -16,7 +16,7 @@ public class TrapGenerator : MonoBehaviour
     {
         while (true)
         {
-            var trap = (GameObject)Instantiate(_trapBases[_trapBases.Count - 1].gameObject);
+            var trap = (GameObject)Instantiate(_trapBases[(int)Random.Range(0, _trapBases.Count)].gameObject);
             trap.transform.position = transform.position;
             Destroy(trap, 60.0f);
             yield return new WaitForSeconds(this._frequency);
