@@ -14,6 +14,8 @@ public class TrapBase : MonoBehaviour
     public float Speed { get => _speed; set => _speed = value; }
     public int Damage { get => _damage; set => _damage = value; }
 
+    protected bool _isBursted = false;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -29,18 +31,20 @@ public class TrapBase : MonoBehaviour
 
     protected virtual void Chase()
     {
-        var forward = Vector3.zero;
-        forward.x = (_aim.transform.position.x - this.transform.position.x) / Mathf.Abs(_aim.transform.position.x - this.transform.position.x);
-        forward.z = (_aim.transform.position.z - this.transform.position.z) / Mathf.Abs(_aim.transform.position.z - this.transform.position.z);
-        forward.y = (_aim.transform.position.y - this.transform.position.y) / Mathf.Abs(_aim.transform.position.y - this.transform.position.y);
+        if (this._isBursted)
+            return;
 
-        _rigidbody.velocity = forward * _speed;
+        transform.LookAt(this._aim.transform.position);
+        var forward = transform.forward;
+        forward *= this._speed;
+        forward.y = this._rigidbody.velocity.y;
+        this._rigidbody.velocity = forward;
     }
     
     public virtual void Burst(Vector3 speed)
     {
         this._rigidbody.velocity = speed;
-        Destroy(this);
+        this._isBursted = true;
         Destroy(gameObject, 2.0f);
     }
 

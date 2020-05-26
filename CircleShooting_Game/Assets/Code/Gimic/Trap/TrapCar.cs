@@ -17,49 +17,64 @@ public class TrapCar : TrapBase
         spin.y = _firstSpin;
         this.transform.eulerAngles = spin;
         base.Start();
+        StartCoroutine("WindingChase");
+    }
+
+    public override void Burst(Vector3 speed)
+    {
+        StartCoroutine("ReleaseWheel");
+        base.Burst(speed);
     }
 
     protected override void Chase()
     {
-        if (_wheels.Count > 0 && Vector3.Distance(transform.position, base._aim.transform.position) <= this._wheelReleaseDistance)
+        if(this.transform.position.z - this._aim.transform.position.z <= -5
+            && !this._isBursted)
         {
-            _wheels.ForEach(w =>
-            {
-                if (w == null)
-                    return;
-
-                var trapBase = w.AddComponent<TrapBase>();
-                trapBase.Speed = this._wheelSpeed;
-                w.transform.parent = null;
-            });
-            _wheels.Clear();
+            transform.LookAt(this._aim.transform.position);
+            var spin = transform.eulerAngles;
+            spin.y += 180;
+            spin.x = 0;
+            spin.z = 0;
+            transform.eulerAngles = spin;
+            this._rigidbody.velocity = transform.forward * -Speed;
         }
-
-        if (_isStart)
-            return;
-
-        StartCoroutine("WindingChase");
     }
 
     private IEnumerator WindingChase()
     {
         this._isStart = true;
         var count = 0;
-        var dSpin = -1;
+        var dSpin = this._firstSpin  > 0 ?- 1 : 1;
 
-        while (true)
+        while (transform.position.z - this._aim.transform.position.z >= -5)
         {
             transform.position -= transform.forward * 0.2f;
             var spin = transform.eulerAngles;
             spin.y += dSpin;
             transform.eulerAngles = spin;
             count++;
-            if (count >= this._firstSpin * 2)
+            if (count >= Mathf.Abs(this._firstSpin) * 2)
             {
                 dSpin *= -1;
                 count = 0;
             }
             yield return new WaitForSeconds(0.01f);
         }
+    }
+
+    private IEnumerator ReleaseWheel()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _wheels.ForEach(w =>
+        {
+            if (w == null)
+                return;
+
+            var trapBase = w.AddComponent<TrapBase>();
+            trapBase.Speed = this._wheelSpeed;
+            w.transform.parent = null;
+        });
+        _wheels.Clear();
     }
 }

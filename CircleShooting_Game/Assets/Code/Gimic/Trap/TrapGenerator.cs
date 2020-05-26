@@ -16,10 +16,10 @@ public class TrapGenerator : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(this._frequency);
             var trap = (GameObject)Instantiate(_trapBases[(int)Random.Range(0, _trapBases.Count)].gameObject);
             trap.transform.position = transform.position;
             Destroy(trap, 60.0f);
-            yield return new WaitForSeconds(this._frequency);
         }
     }
 }
