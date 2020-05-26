@@ -61,7 +61,7 @@ namespace DiamondGames.CicleShooting.Spinner
             
             //角度をオブジェクトに反映する
             var spins = _spinObject.transform.eulerAngles;
-            spins.y += spin * _spinSpeed * spinSpeed;
+            spins.y += spin * _spinSpeed * spinSpeed * Time.timeScale;
             _spinObject.transform.eulerAngles = spins;
         }
 

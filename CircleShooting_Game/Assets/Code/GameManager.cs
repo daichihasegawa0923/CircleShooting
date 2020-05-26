@@ -17,6 +17,16 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void SetGameSpeed(float speed)
+    {
+        if (speed > 1)
+            speed = 1;
+        if (speed < 0)
+            speed = 0;
+
+        Time.timeScale = speed;
+    }
+
     public void StartGenerateTrap()
     {
         this._trapGenerators.ForEach(tg => tg.StartGenerate());
