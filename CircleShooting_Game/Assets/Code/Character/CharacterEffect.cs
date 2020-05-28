@@ -7,6 +7,10 @@ public class CharacterEffect : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     private Vector3 _cameraPosition;
+
+    [SerializeField] private AudioSource _audioSouce;
+    [SerializeField] private AudioClip _damageAudioClip;
+
     private void Start()
     {
         this._cameraPosition = this._camera.transform.position;
@@ -18,5 +22,11 @@ public class CharacterEffect : MonoBehaviour
         sequence
             .Append(this._camera.transform.DOShakePosition(0.9f, 1.0f, 4, 180, false, true))
             .Join(this._camera.transform.DOMove(this._cameraPosition,0.1f));
+    }
+
+    public void DamageAudioPlay()
+    {
+        this._audioSouce.clip = this._damageAudioClip;
+        this._audioSouce.Play();
     }
 }
