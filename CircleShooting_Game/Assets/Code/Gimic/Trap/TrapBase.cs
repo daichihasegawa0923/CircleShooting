@@ -11,6 +11,7 @@ public class TrapBase : MonoBehaviour
     [SerializeField]
     private int _damage = 10;
 
+
     public float Speed { get => _speed; set => _speed = value; }
     public int Damage { get => _damage; set => _damage = value; }
 
@@ -52,7 +53,7 @@ public class TrapBase : MonoBehaviour
     {
         var character = collision.gameObject.GetComponent<ControlledCharacter>();
 
-        if (character)
+        if (character && !this._isBursted)
         {
             character.Damaged(this._damage);
             Destroy(gameObject);

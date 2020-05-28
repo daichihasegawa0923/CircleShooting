@@ -9,6 +9,9 @@ public class ControlledCharacter : MonoBehaviour
     [SerializeField]
     protected int _hp;
 
+    [SerializeField]
+    protected CharacterEffect _characterEffect;
+
     /// <summary>
     /// HPの初期値を設定する
     /// </summary>
@@ -24,6 +27,7 @@ public class ControlledCharacter : MonoBehaviour
     public virtual void Damaged(int damagePoint)
     {
         this._hp -= damagePoint;
+        this._characterEffect.ShakeCamera();
     }
 
     /// <summary>
