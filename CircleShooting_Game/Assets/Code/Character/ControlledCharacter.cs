@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ControlledCharacter : MonoBehaviour
 {
@@ -12,12 +13,23 @@ public class ControlledCharacter : MonoBehaviour
     [SerializeField]
     private Slider _hpSlider;
 
+    
+    [SerializeField]
+    private GameObject _hpBar;
+    [SerializeField]
+    private GameObject _hpBarBase;
+
+    private float _hpBarXSize;
+
     [SerializeField]
     protected CharacterEffect _characterEffect;
 
     protected int Hp { get => _hp; set
         {
-            _hpSlider.value = value;
+            var scale = _hpBar.transform.localScale;
+            scale.x = this._hpBarXSize * ((float)value / this._maxHp);
+            _hpBar.transform.localScale = scale;
+
             _hp = value; 
 
         } }
@@ -27,8 +39,11 @@ public class ControlledCharacter : MonoBehaviour
     /// </summary>
     protected virtual void Awake()
     {
+        this._hpBarXSize = _hpBar.transform.localScale.x;
         this._hpSlider.maxValue = this._maxHp;
         this.Hp = this._maxHp;
+
+        this.AppearHpStatusBar();
     }
 
     /// <summary>
@@ -53,5 +68,15 @@ public class ControlledCharacter : MonoBehaviour
         this.Hp += healPoint;
         if (this.Hp > this._maxHp)
             this.Hp = this._maxHp;
+    }
+
+    protected void AppearHpStatusBar()
+    {
+        var position = this._hpBarBase.transform.position;
+        var positionY = this._hpBarBase.transform.position;
+        positionY.y -= 25.0f;
+        this._hpBarBase.transform.position = positionY;
+
+        this._hpBarBase.transform.DOMove(position,2.0f);
     }
 }

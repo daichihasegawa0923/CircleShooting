@@ -395,6 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95b8df7b179a544b9287581790c0bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pointEffect: {fileID: 5814831387051861492, guid: cda8aded71aa1d146b28e964921a7d65,
+    type: 3}
   _burstSpeed: 10
   _audioSouce: {fileID: 8141182462036368234}
   _hibanaEffect: {fileID: 6274209167015197801, guid: d3de213f5e9f8c1458bb0684f41b50b5,
