@@ -11318,6 +11318,8 @@ MonoBehaviour:
   _camera: {fileID: 963194227}
   _audioSouce: {fileID: 5877542446119956649}
   _damageAudioClip: {fileID: 8300000, guid: 9967928fef13920449e94b44a18560fe, type: 3}
+  _damageEffectParticle: {fileID: 2240839072338249432, guid: bffacc43810bebb41a42ac620bbeba1f,
+    type: 3}
 --- !u!82 &5877542446119956649
 AudioSource:
   m_ObjectHideFlags: 0

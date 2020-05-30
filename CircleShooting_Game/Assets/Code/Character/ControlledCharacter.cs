@@ -55,8 +55,7 @@ public class ControlledCharacter : MonoBehaviour
         this.Hp -= damagePoint;
         if (this.Hp < 0)
             this.Hp = 0;
-        this._characterEffect.ShakeCamera();
-        this._characterEffect.DamageAudioPlay();
+        this._characterEffect.DamageEffectAppear(transform.position);
     }
 
     /// <summary>
