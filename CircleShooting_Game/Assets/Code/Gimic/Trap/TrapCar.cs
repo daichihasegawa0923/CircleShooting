@@ -20,12 +20,6 @@ public class TrapCar : TrapBase
         StartCoroutine("WindingChase");
     }
 
-    public override void Burst(Vector3 speed)
-    {
-        StartCoroutine("ReleaseWheel");
-        base.Burst(speed);
-    }
-
     protected override void Chase()
     {
         if(this.transform.position.z - this._aim.transform.position.z <= -5
@@ -47,7 +41,7 @@ public class TrapCar : TrapBase
         var count = 0;
         var dSpin = this._firstSpin  > 0 ?- 1 : 1;
 
-        while (transform.position.z - this._aim.transform.position.z >= -5)
+        while (transform.position.z - this._aim.transform.position.z >= -5 && !this._isBursted)
         {
             transform.position -= transform.forward * 0.2f;
             var spin = transform.eulerAngles;
@@ -61,20 +55,5 @@ public class TrapCar : TrapBase
             }
             yield return new WaitForSeconds(0.01f);
         }
-    }
-
-    private IEnumerator ReleaseWheel()
-    {
-        yield return new WaitForSeconds(1.0f);
-        _wheels.ForEach(w =>
-        {
-            if (w == null)
-                return;
-
-            var trapBase = w.AddComponent<TrapBase>();
-            trapBase.Speed = this._wheelSpeed;
-            w.transform.parent = null;
-        });
-        _wheels.Clear();
     }
 }

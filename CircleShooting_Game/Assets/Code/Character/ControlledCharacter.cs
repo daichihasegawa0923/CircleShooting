@@ -76,6 +76,6 @@ public class ControlledCharacter : MonoBehaviour
         positionY.y -= 25.0f;
         this._hpBarBase.transform.position = positionY;
 
-        this._hpBarBase.transform.DOMove(position,2.0f);
+        this._hpBarBase.transform.DOMove(position,4.0f);
     }
 }

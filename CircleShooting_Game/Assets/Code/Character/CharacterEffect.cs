@@ -23,7 +23,7 @@ public class CharacterEffect : MonoBehaviour
         var sequence = DOTween.Sequence();
         sequence
             .Append(this._camera.transform.DOShakePosition(0.9f, 1.0f, 4, 180, false, true))
-            .Join(this._camera.transform.DOMove(this._cameraPosition,0.1f));
+            .Join(this._camera.transform.DOMove(this._cameraPosition,1.0f));
     }
 
     public void DamageEffectAppear(Vector3 position)

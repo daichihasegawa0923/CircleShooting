@@ -25,6 +25,9 @@ public class TrapHumanoidEnemy : TrapBase
 
     protected override void Chase()
     {
+        if (this._isBursted)
+            return;
+
         switch (this._currentHumanState)
         {
             case HumanState.run:

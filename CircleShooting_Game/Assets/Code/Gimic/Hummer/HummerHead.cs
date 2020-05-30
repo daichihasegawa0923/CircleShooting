@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class HummerHead : MonoBehaviour
 {
-    [SerializeField] private PointEffect _pointEffect;
-
     [SerializeField] float _burstSpeed = 10.0f;
-    [SerializeField] AudioSource _audioSouce;
 
     [SerializeField] GameObject _hibanaEffect;
 
@@ -20,12 +17,8 @@ public class HummerHead : MonoBehaviour
             this.AppearHibanaEffect(collision.contacts[0].point);
             var speedBase = trap.transform.position - collision.contacts[0].point;
             speedBase *= _burstSpeed;
-            speedBase.y += 5.0f;
+            speedBase.y += 1.0f;
             trap.Burst(speedBase);
-            this._audioSouce.Play();
-
-            var pointEffect = Instantiate(this._pointEffect.gameObject).GetComponent<PointEffect>();
-            pointEffect.AppearPointEffect(collision.contacts[0].point,trap.Damage);
         }
     }
 

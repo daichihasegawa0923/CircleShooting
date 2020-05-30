@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Rigidbody))]
 public class TrapBase : MonoBehaviour
 {
@@ -11,9 +12,17 @@ public class TrapBase : MonoBehaviour
     [SerializeField]
     private int _damage = 10;
 
+    [SerializeField]
+    private AudioSource _audioSource;
+    [SerializeField]
+    private AudioClip _burstedAudioClip;
+
+    [SerializeField]
+    private PointEffect _pointEffect;
 
     public float Speed { get => _speed; set => _speed = value; }
     public int Damage { get => _damage; set => _damage = value; }
+    public PointEffect PointEffect { get => _pointEffect; set => _pointEffect = value; }
 
     protected bool _isBursted = false;
 
@@ -44,19 +53,40 @@ public class TrapBase : MonoBehaviour
     
     public virtual void Burst(Vector3 speed)
     {
+        if (this._isBursted)
+            return;
+
+        // 点数の処理
+        var point = Damage;
+        var pointEffect = Instantiate(this.PointEffect.gameObject).GetComponent<PointEffect>();
+        GameManager.PlusScore(ref point);
+        pointEffect.AppearPointEffect(transform.position, point);
+
+        this._audioSource.clip = this._burstedAudioClip;
+        this._audioSource.Play();
+
         this._rigidbody.velocity = speed;
         this._isBursted = true;
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, 3.0f);
     }
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
         var character = collision.gameObject.GetComponent<ControlledCharacter>();
+        var trapBase = collision.gameObject.GetComponent<TrapBase>();
 
         if (character && !this._isBursted)
         {
             character.Damaged(this._damage);
             Destroy(gameObject);
+        }
+
+        if(trapBase && this._isBursted)
+        {
+            var speed = collision.contacts[0].point - transform.position;
+            speed *= 10.0f;
+            speed.y = 1.0f;
+            trapBase.Burst(speed);
         }
     }
 }

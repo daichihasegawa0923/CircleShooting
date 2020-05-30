@@ -6,6 +6,7 @@ public class TrapGenerator : MonoBehaviour
 {
     [SerializeField] protected List<TrapBase> _trapBases;
     [SerializeField] protected float _frequency = 5.0f;
+    [SerializeField] protected float _firstWaitTime = 0.0f;
 
     public void StartGenerate()
     {
@@ -14,6 +15,7 @@ public class TrapGenerator : MonoBehaviour
 
     protected IEnumerator Generate()
     {
+        yield return new WaitForSeconds(this._firstWaitTime);
         while (true)
         {
             yield return new WaitForSeconds(this._frequency);
