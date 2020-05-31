@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
             return;
 
         this._currentState = GameState.end;
+        this._onGameCanvasManager.SetLastScoreText(GameManager.score);
         StartCoroutine("FadeTimeScaleForGameOver");
     }
 

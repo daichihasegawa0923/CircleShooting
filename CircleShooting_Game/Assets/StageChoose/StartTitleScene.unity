@@ -620,8 +620,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.0000038146973, y: -128}
-  m_SizeDelta: {x: 205.5, y: 45.899994}
+  m_AnchoredPosition: {x: -0.0000038146973, y: -112.4}
+  m_SizeDelta: {x: 205.5, y: 77.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989429098
 MonoBehaviour:
@@ -654,7 +654,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SPINNER
+  m_Text: 'HUMMER
+
+    SHOOTING'
 --- !u!222 &989429099
 CanvasRenderer:
   m_ObjectHideFlags: 0

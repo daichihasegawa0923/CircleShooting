@@ -25,7 +25,7 @@ public class PointEffect : MonoBehaviour
         transform.DOMove(endPosition, 0.2f);
         transform.DORotate(spin, 0.2f);
         transform.DOScale(scale, 0.2f);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 1.0f);
 
         _pointText.text = point.ToString();
         _comboText.text = comboCount.ToString();

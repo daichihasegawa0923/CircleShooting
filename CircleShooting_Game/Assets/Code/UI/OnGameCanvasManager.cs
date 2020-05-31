@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OnGameCanvasManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class OnGameCanvasManager : MonoBehaviour
     private string _playPanelName = "Play";
     [SerializeField]
     private string _gameOverPanelName = "GameOver";
+
+    [SerializeField]
+    private Text _lastScoreText;
 
     public string PlayPanelName { private set => this._playPanelName = value; get => this._playPanelName; }
     public string GameOverPanelName { get => _gameOverPanelName; private set => _gameOverPanelName = value; }
@@ -29,5 +33,10 @@ public class OnGameCanvasManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         _panelLoader.ActiveOnePanelByName(panelName);
+    }
+
+    public void SetLastScoreText(int score)
+    {
+        this._lastScoreText.text = score.ToString();
     }
 }
