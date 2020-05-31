@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject _trapGeneratorParent;
     [SerializeField] OnGameCanvasManager _onGameCanvasManager;
     [SerializeField] ControlledCharacter _character;
+
+    [SerializeField] private string _keyNameButtom = "_highScore";
 
     public enum GameState {onGame,menu,end};
 
@@ -20,6 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.score = 0;
         StartGenerateTrap();
         _onGameCanvasManager.StartGame();
     }
@@ -48,7 +52,17 @@ public class GameManager : MonoBehaviour
 
         this._currentState = GameState.end;
         this._onGameCanvasManager.SetLastScoreText(GameManager.score);
+        this.SetHigeScore();
         StartCoroutine("FadeTimeScaleForGameOver");
+    }
+
+    private void SetHigeScore()
+    {
+        var keyName = SceneManager.GetActiveScene().name + this._keyNameButtom;
+        var oldHighScore = PlayerPrefs.GetInt(keyName, 0);
+        if (GameManager.score > oldHighScore)
+            PlayerPrefs.SetInt(keyName, GameManager.score);
+
     }
 
     private IEnumerator FadeTimeScaleForGameOver()

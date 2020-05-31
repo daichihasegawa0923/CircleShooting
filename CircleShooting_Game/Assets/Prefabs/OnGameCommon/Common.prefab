@@ -1330,7 +1330,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: StartTitleScene
+          m_StringArgument: StageChooseScene
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 8026443159031643887}
@@ -2002,6 +2002,7 @@ MonoBehaviour:
   _trapGeneratorParent: {fileID: 1372605325}
   _onGameCanvasManager: {fileID: 8026443158089935049}
   _character: {fileID: 4535861703879563249}
+  _keyNameButtom: _highScore
   _currentState: 0
 --- !u!1 &8927585409191690243
 GameObject:
@@ -2087,6 +2088,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 993437878176154861}
     m_Modifications:
+    - target: {fileID: 4518495607293243040, guid: 3666207ee16d59943bbcd43c196d4a51,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.2999268
+      objectReference: {fileID: 0}
     - target: {fileID: 4518495608040779465, guid: 3666207ee16d59943bbcd43c196d4a51,
         type: 3}
       propertyPath: m_LocalPosition.x

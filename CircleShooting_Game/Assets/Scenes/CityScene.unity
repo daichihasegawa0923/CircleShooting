@@ -7834,6 +7834,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3844460112774263582, guid: bdb905bed5d145744a635c0373f3c1bd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -3.2999268
+      objectReference: {fileID: 0}
     - target: {fileID: 4535861703879563262, guid: bdb905bed5d145744a635c0373f3c1bd,
         type: 3}
       propertyPath: _camera
