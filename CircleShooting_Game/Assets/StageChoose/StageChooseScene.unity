@@ -2319,6 +2319,21 @@ PrefabInstance:
       propertyPath: m_PixelPerfect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4555361553343561657, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555361553343561657, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555361553343561657, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4555361554066027038, guid: cbbf923bf8e79104f95e8727a3545dad,
         type: 3}
       propertyPath: _sceneLoader
@@ -2438,6 +2453,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555361554513174269, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555361554647996852, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbbf923bf8e79104f95e8727a3545dad, type: 3}
