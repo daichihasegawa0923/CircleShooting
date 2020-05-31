@@ -24,7 +24,10 @@ public class ControlledCharacter : MonoBehaviour
     [SerializeField]
     protected CharacterEffect _characterEffect;
 
-    protected int Hp { get => _hp; set
+    public int Hp
+    { 
+        get => _hp;
+        protected set
         {
             var scale = _hpBar.transform.localScale;
             scale.x = this._hpBarXSize * ((float)value / this._maxHp);

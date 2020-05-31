@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] protected List<TrapGenerator> _trapGenerators;
+    [SerializeField] GameObject _trapGeneratorParent;
+    [SerializeField] OnGameCanvasManager _onGameCanvasManager;
+    [SerializeField] ControlledCharacter _character;
 
     public enum GameState {onGame,menu,end};
 
@@ -18,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartGenerateTrap();
+        _onGameCanvasManager.StartGame();
     }
 
     // Update is called once per frame
@@ -28,10 +32,41 @@ public class GameManager : MonoBehaviour
             case GameState.onGame:
                 if (GameManager.comboCount > 0)
                     GameManager.countTimeForCombo += Time.deltaTime;
+                this.JudgeGameOver();
                 break;
+            case GameState.end:
+
             default:
                 break;
         }
+    }
+
+    private void JudgeGameOver()
+    {
+        if (_character.Hp > 0)
+            return;
+
+        this._currentState = GameState.end;
+        StartCoroutine("FadeTimeScaleForGameOver");
+    }
+
+    private IEnumerator FadeTimeScaleForGameOver()
+    {
+        while (Time.timeScale > 0)
+        {
+            if (Time.timeScale <= 0.2f)
+            {
+                Time.timeScale = 0.0f;
+                break;
+            }
+            Debug.Log(Time.timeScale);
+            Time.timeScale -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        this._onGameCanvasManager.ChangePanel(this._onGameCanvasManager.GameOverPanelName);
+
+        foreach (var trapBase in FindObjectsOfType<TrapBase>())
+            Destroy(trapBase.gameObject);
     }
 
     /// <summary>
@@ -73,6 +108,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGenerateTrap()
     {
-        this._trapGenerators.ForEach(tg => tg.StartGenerate());
+        var generators = this._trapGeneratorParent.GetComponentsInChildren<TrapGenerator>();
+        foreach (var generator in generators)
+            generator.StartGenerate();
     }
 }

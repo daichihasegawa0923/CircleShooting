@@ -59,8 +59,8 @@ public class TrapBase : MonoBehaviour
         // 点数の処理
         var point = Damage;
         var pointEffect = Instantiate(this.PointEffect.gameObject).GetComponent<PointEffect>();
-        GameManager.PlusScore(ref point);
-        pointEffect.AppearPointEffect(transform.position, point);
+        var combo = GameManager.PlusScore(ref point);
+        pointEffect.AppearPointEffect(transform.position, point, combo);
 
         this._audioSource.clip = this._burstedAudioClip;
         this._audioSource.Play();

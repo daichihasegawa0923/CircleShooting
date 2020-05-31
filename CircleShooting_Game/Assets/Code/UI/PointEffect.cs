@@ -7,7 +7,9 @@ public class PointEffect : MonoBehaviour
 {
     [SerializeField]
     private Text _pointText;
-    public void AppearPointEffect(Vector3 position,int point)
+    [SerializeField]
+    private Text _comboText;
+    public void AppearPointEffect(Vector3 position,int point,int comboCount)
     {
         position.y += 2.0f;
         transform.position = position;
@@ -26,5 +28,6 @@ public class PointEffect : MonoBehaviour
         Destroy(gameObject, 0.5f);
 
         _pointText.text = point.ToString();
+        _comboText.text = comboCount.ToString();
     }
 }
