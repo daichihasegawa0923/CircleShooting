@@ -25,6 +25,9 @@ public class StageChooseManager : MonoBehaviour
     [SerializeField]
     private Image _stageImage;
 
+    [SerializeField]
+    private Text _highScoreText;
+
     public StageSelectElement GetStageSelectElement()
     {
         return this._stageSelectElements[this._index];
@@ -47,10 +50,14 @@ public class StageChooseManager : MonoBehaviour
         if (this._index >= this._stageSelectElements.Length)
             this._index = this._stageSelectElements.Length - 1;
 
+        // ボタンのアクティブ&非アクティブを切り替える
         this._leftButton.interactable = this._index == 0 ? false : true;
         this._rightButton.interactable = this._index == this._stageSelectElements.Length - 1 ? false : true;
 
+        //　ステージのイメージ画像を切り替える
         this._stageImage.sprite = this._stageSelectElements[this._index]._stageImage;
+
+        this._highScoreText.text = PlayerPrefs.GetInt(this._stageSelectElements[this._index]._highScoreKey,0).ToString();
     }
 
     public void LoadScene()
