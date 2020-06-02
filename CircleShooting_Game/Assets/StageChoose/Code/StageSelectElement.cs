@@ -10,16 +10,15 @@ public class StageSelectElement : MonoBehaviour
     public string _descrioption;
     public string _highScoreKey;
 
-    public bool _isLocked = true;
+    public bool _isLocked = false;
     public string _lockReleaseKeyName;
     public int _lockReleaseScore = 0;
     private void OnEnable()
     {
-        if(_isLocked)
-        {
-            var score = PlayerPrefs.GetInt(this._lockReleaseKeyName,0);
-            if (score >= this._lockReleaseScore)
-                this._isLocked = false;
-        }
+        var score = PlayerPrefs.GetInt(this._lockReleaseKeyName,0);
+        if (score >= this._lockReleaseScore)
+            this._isLocked = false;
+        else
+            this._isLocked = true;
     }
 }
