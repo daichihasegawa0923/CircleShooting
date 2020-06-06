@@ -2641,6 +2641,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetStage
       objectReference: {fileID: 0}
+    - target: {fileID: 5474581468947823902, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5474581468947823902, guid: cbbf923bf8e79104f95e8727a3545dad,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5777211003638162223, guid: cbbf923bf8e79104f95e8727a3545dad,
         type: 3}
       propertyPath: m_IsActive

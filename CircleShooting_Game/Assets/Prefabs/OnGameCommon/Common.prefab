@@ -2418,6 +2418,11 @@ PrefabInstance:
       propertyPath: _canvasForDebug
       value: 
       objectReference: {fileID: 8026443158031092315}
+    - target: {fileID: 2817641389490369792, guid: 680c23fcbbdf3014cbc5ad5b591edfaa,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3e2056576908aa4c90a2cc77a85dccb, type: 2}
     - target: {fileID: 3014078994154820664, guid: 680c23fcbbdf3014cbc5ad5b591edfaa,
         type: 3}
       propertyPath: m_LocalPosition.x
