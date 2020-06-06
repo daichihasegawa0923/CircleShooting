@@ -1107,7 +1107,7 @@ GameObject:
   - component: {fileID: 370980095588066895}
   - component: {fileID: 370980095588066897}
   - component: {fileID: 1394910239752406285}
-  - component: {fileID: 7725727996989160355}
+  - component: {fileID: 1559892328792798741}
   m_Layer: 0
   m_Name: lion
   m_TagString: Untagged
@@ -1275,7 +1275,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7725727996989160355
+--- !u!114 &1559892328792798741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1284,15 +1284,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8503941203984334679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5328bf7ba2b011d448f2dcb1834cb3c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 62b6601e1e5c94bb5af7910e53079007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _damage: 25
+  _damage: 10
   _audioSource: {fileID: 1394910239752406285}
   _burstedAudioClip: {fileID: 8300000, guid: 30caed32ae7b8804ab32855de1c83f37, type: 3}
   _pointEffect: {fileID: 5814831387051861492, guid: cda8aded71aa1d146b28e964921a7d65,
     type: 3}
+  _hp: 3
+  _isDamaged: 0
+  _animator: {fileID: 3374686377374998590}
+  DAMAGED_ANIMATOR_TRIGGER: damaged
+  RUN_ANIMATOR_TRIGGER: run
 --- !u!1 &8674835652768462120
 GameObject:
   m_ObjectHideFlags: 0

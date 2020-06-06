@@ -151,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 1067226691, guid: bdb905bed5d145744a635c0373f3c1bd, type: 3}
       propertyPath: _trapBases.Array.data[0]
       value: 
-      objectReference: {fileID: 7725727996989160355, guid: 355157b93cc57dd45b90b31614f66e22,
+      objectReference: {fileID: 1559892328792798741, guid: 355157b93cc57dd45b90b31614f66e22,
         type: 3}
     - target: {fileID: 1550961358, guid: bdb905bed5d145744a635c0373f3c1bd, type: 3}
       propertyPath: m_IsActive

@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator FadeTimeScaleForGameOver()
     {
+        this._onGameCanvasManager.ChangePanel(this._onGameCanvasManager.GameOverPanelName);
         while (Time.timeScale > 0)
         {
             if (Time.timeScale <= 0.2f)
@@ -78,7 +79,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale -= 0.01f;
             yield return new WaitForSeconds(0.01f);
         }
-        this._onGameCanvasManager.ChangePanel(this._onGameCanvasManager.GameOverPanelName);
 
         foreach (var trapBase in FindObjectsOfType<TrapBase>())
             Destroy(trapBase.gameObject);
