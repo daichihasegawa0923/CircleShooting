@@ -15,6 +15,7 @@ public class TrapLion : TrapBase
         this._animator.SetTrigger(this.DAMAGED_ANIMATOR_TRIGGER);
         if (this._hp > 0)
         {
+            this.BurstSound();
             if (!this._isDamaged)
             {
                 this._hp -= 1;

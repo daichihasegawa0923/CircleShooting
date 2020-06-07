@@ -1287,8 +1287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6601e1e5c94bb5af7910e53079007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _damage: 10
+  _speed: 2
+  _damage: 25
   _audioSource: {fileID: 1394910239752406285}
   _burstedAudioClip: {fileID: 8300000, guid: 30caed32ae7b8804ab32855de1c83f37, type: 3}
   _pointEffect: {fileID: 5814831387051861492, guid: cda8aded71aa1d146b28e964921a7d65,

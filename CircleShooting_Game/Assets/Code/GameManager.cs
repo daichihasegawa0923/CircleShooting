@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     /// <returns>コンボ数</returns>
     public static int PlusScore(ref int plusScore)
     {
-        if (countTimeForCombo <= 1.0f)
+        if (countTimeForCombo <= 2.0f)
         {
             comboCount++;
             plusScore *= comboCount;
@@ -126,5 +126,10 @@ public class GameManager : MonoBehaviour
         var generators = this._trapGeneratorParent.GetComponentsInChildren<TrapGenerator>();
         foreach (var generator in generators)
             generator.StartGenerate();
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

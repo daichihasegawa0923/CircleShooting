@@ -33,6 +33,12 @@ public class TrapBase : MonoBehaviour
         _aim = FindObjectOfType<ControlledCharacter>();
     }
 
+    protected void BurstSound()
+    {
+        this._audioSource.clip = this._burstedAudioClip;
+        this._audioSource.Play();
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
@@ -62,8 +68,7 @@ public class TrapBase : MonoBehaviour
         var combo = GameManager.PlusScore(ref point);
         pointEffect.AppearPointEffect(transform.position, point, combo);
 
-        this._audioSource.clip = this._burstedAudioClip;
-        this._audioSource.Play();
+        this.BurstSound();
 
         this._rigidbody.velocity = speed;
         this._isBursted = true;
