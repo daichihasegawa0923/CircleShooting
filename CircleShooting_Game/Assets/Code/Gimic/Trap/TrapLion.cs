@@ -20,12 +20,13 @@ public class TrapLion : TrapBase
             {
                 this._hp -= 1;
                 this._isDamaged = true;
+                speed *= 0.5f;
+                speed.y += 20.0f;
                 this._rigidbody.velocity = speed;
                 StartCoroutine("DamagedCotoutine");
             }
             return;
         }
-
         base.Burst(speed);
     }
 

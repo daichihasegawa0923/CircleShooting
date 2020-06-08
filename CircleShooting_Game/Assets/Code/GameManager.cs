@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         GameManager.score = 0;
         StartGenerateTrap();
         _onGameCanvasManager.StartGame();
+        this.SetGameSpeed(1.0f);
     }
 
     // Update is called once per frame
